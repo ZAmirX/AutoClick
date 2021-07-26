@@ -1,2 +1,16 @@
 # AutoClick
 Auto Clicker java application with added macro functionality to record and perform a series of actions on a global OS-level.
+
+# Description of each Java class
+
+* ClickSelect – Used when highlighting an area on screen that shows up in a red outline when making the selection. This would be used either when selecting a random click area to move the mouse to when the user would like to choose a random point in a range to move the mouse to in a program, or when taking a screenshot of an area on screen to be used when making an image condition for dynamic adaptation to current state.
+* Commands – Used when the user initiates the start of the algorithm following user commands.
+* Countdown – This class is started when the Commands class reaches a waiting point after carrying out one of the commands. Countdown runs in its own thread to change the “Time Left” column for the previously executed command to display how long is left until the program moves on to the next command.
+* GlobalKeyListener – Initiates the global key listener to listen out for any OS-wide user input (not necessarily within the application interface). It also contains all the listener methods such as nativeKeyPressed, nativeMousePressed and nativeMouseMoved which are fired upon the respective user input.
+* ImageChecker – Started at the beginning of a Commands thread and given its own thread to continuously check entries in the image condition table against what’s currently displayed on the user’s screen.
+* Main – The home of the main method as well as where the interface is set up. The buttons also each have their own listeners within this class to set up interaction with other classes and carry out user functionalities. The tables also function from here allowing the user to edit them freely and change whatever they may like. Save and Load functionalities are also implemented in here to allow the user to keep a hold of previously created command tables without having to repopulate it every time the application is reopened.
+* MouseMover – Contains the method for moving the mouse across the screen so that it follows the coordinates the user chose when populating the command table.
+* Recorder – Contains all the methods required for following the recording of user actions algorithm. The GlobalKeyListener class works together with this class as it is required to detect global user inputs, and once any user input is detected, it is passed to the recorder class to figure out what to do with it.
+* TableRowTransferHandler – This class’s contents were found on the internet (18) and it is used to allow the user to freely move rows in the commands table around, so that if the user feels like a certain command belongs before or after other commands, they can simply drag and drop the row to the position in the table they like. This class is called from the Main class and is only ever needed for when the user drags a row in the commands table.
+* Timer – This class, as explained above under figure 6, notifies other threads once they reach the end of the time limit that they set when making call to this class.
+* WaitingObject – This is a very simple class that is used as the foundation for any class that implements multithreading and waiting and signalling for interruptible wait times.
